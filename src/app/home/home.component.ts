@@ -36,11 +36,11 @@ export class HomeComponent implements OnInit {
     let user3: User = {
       nick: "Pablo",
       email: "aes@aes.ase",
-      friend: true,
+      friend: false,
       uid: 4
     };
 
-    let users: User[] = { myUser };
+    let users: User[] =  myUser ;
     this.friends = [user1, user2, user3];
 
     console.log(myUser); 
