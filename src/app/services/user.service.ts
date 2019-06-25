@@ -45,8 +45,23 @@ export class UserService {
       uid: 5
     };
 
+    let user6: User = {
+      nick: "Maria",
+      email: "aes@aes.ase",
+      friend: true,
+      uid: 6
+    };
 
-    this.friends = [user1, user2, user3, user4, user5];
+    let user7: User = {
+      nick: "Susana",
+      email: "aes@aes.ase",
+      friend: true,
+      uid: 7
+    };
+
+
+
+    this.friends = [user1, user2, user3, user4, user5, user6, user7];
   }
 
   getFriends() {
@@ -57,7 +72,7 @@ export class UserService {
     this.friend = this.friends.find((record) => {
       return record.uid == uid;
     });
-    
+
     return this.friend;
   }
 }
