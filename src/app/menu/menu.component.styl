@@ -1,2 +1,35 @@
+vendor(prop, args)
+  -webkit-{prop} args
+  -moz-{prop} args
+  {prop} args
+
+border-radius()
+  vendor('border-radius', arguments)
+
+box-shadow()
+  vendor('box-shadow', arguments)
+
 #main-logo
-  width 60px
+  width 40px
+
+#menu-container
+  background: rgba(147,206,222,1);
+  //background-color #708090
+  postion fixed
+  width 100%
+  z-index 9
+  height 70px
+  top 0px
+  //border-top 1px solid white
+
+#menu-container > .item
+    padding 15px
+    color white
+    cursor default
+    //border 1px solid white
+    display inline-block
+
+.branding
+  padding 5px !important
+  border-top none
+  border-right none
