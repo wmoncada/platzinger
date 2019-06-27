@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+//import { AngularFirestore } from "angularfire2/storage";
 
 @Component({
   selector: 'app-root',
