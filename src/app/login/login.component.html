@@ -16,12 +16,12 @@
           <form action="javascript:void(0)">
             <div class="form-row">
               <div class="form-group">
-                <input class="form-control" [(ngModel)] = "email" type="email" placeholder="Correo Electronico" />
+                <input class="form-control" [(ngModel)] = "email" [ngModelOptions]="{standalone: true}" type="email" placeholder="Correo Electronico" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <input class="form-control" [(ngModel)] = "password" type="password" placeholder="Contraseña" />
+                <input class="form-control" [(ngModel)] = "password" [ngModelOptions]="{standalone: true}" type="password" placeholder="Contraseña" />
               </div>
             </div>
             <div class="form-row">
@@ -31,8 +31,8 @@
             </div>
             <div class="form-row">
               <div class="form-group">
-                <a (click)="login()" href="#" *ngIf="operation == 'login'"  class="btn btn-primary">Iniciar Sesion</a>
-                <a (click)="register()" href="#" *ngIf="operation == 'register'"  class="btn btn-primary">Registrarme</a>
+                <a (click)="login()" href="javascript:void(0);" *ngIf="operation == 'login'"  class="btn btn-primary">Iniciar Sesion</a>
+                <a (click)="register()" href="javascript:void(0);" *ngIf="operation == 'register'"  class="btn btn-primary">Registrarme</a>
               </div>
             </div>
           </form>
