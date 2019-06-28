@@ -18,14 +18,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { SearchPipe } from './pipes/search';
 import { from } from 'rxjs';
+import { AuthenticationGuard } from './services/authentication.guard';
 
 // Rutas
 const appRoutes : Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthenticationGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'conversation/:uid', component: ConversationComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'conversation/:uid', component: ConversationComponent, canActivate: [AuthenticationGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard] },
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 export class AuthenticationService {
 
-  constructor(private angularFireAuth: AngularFireAuth) { }
+  constructor(private angularFireAuth: AngularFireAuth, private router: Router) { }
 
   loginWithEmail(email: string, password: string) {
     return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password);
@@ -22,6 +23,14 @@ export class AuthenticationService {
   }
 
   logOut() {
-    return this.angularFireAuth.auth.signOut();
+    return this.angularFireAuth.auth
+      .signOut()
+      .then(() => {
+        alert('sesion cerrada.');
+        this.router.navigate(['login']);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }
