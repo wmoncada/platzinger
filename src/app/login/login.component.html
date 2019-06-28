@@ -26,7 +26,7 @@
             </div>
             <div class="form-row">
               <div class="form-group">
-                <input *ngIf="operation == 'register'" class="form-control" type="nick" placeholder="Nick" />
+                <input *ngIf="operation == 'register'" [(ngModel)] = "nick" [ngModelOptions]="{standalone: true}" class="form-control" type="nick" placeholder="Nick" />
               </div>
             </div>
             <div class="form-row">
