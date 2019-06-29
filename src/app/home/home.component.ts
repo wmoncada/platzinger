@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
             this.friends = data;
           },
           (error) => {
-                        console.log(error);
+            console.log(error);
         });
   }
 
@@ -32,5 +32,4 @@ export class HomeComponent implements OnInit {
   logOut() {
     this.autenthicationService.logOut();
   }
-
 }
