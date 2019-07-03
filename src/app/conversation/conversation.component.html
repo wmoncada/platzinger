@@ -22,7 +22,7 @@
       <div class="vh55 overscroll pabo10" id="messageArea">
       </div>
       <div class="messageControlsContainer">
-        <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" class="form-control" cols="30"
+        <textarea [(ngModel)]="textMessage" [ngModelOptions]="{standalone: true}" (keyup.enter)="sendMessage()" class="form-control" cols="30"
           rows="5"></textarea>
         <div id="messageToolBar">
           <div class="item">
