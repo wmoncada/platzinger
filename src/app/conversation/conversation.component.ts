@@ -52,7 +52,7 @@ export class ConversationComponent implements OnInit {
   ngOnInit() {
   }
 
-  sendMessage(){
+  sendMessage() {
     const message = {
       uid: this.convertationId,
       timestamp: Date.now(),
@@ -61,8 +61,10 @@ export class ConversationComponent implements OnInit {
       receiver: this.friend.uid
     };
 
-    this.convertationService.createConversation(message).then(() => {
-      this.textMessage = '';
-    });
+    this.convertationService
+      .createConversation(message)
+      .then(() => {
+        this.textMessage = '';
+      });
   }
 }
