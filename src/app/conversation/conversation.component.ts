@@ -17,6 +17,7 @@ export class ConversationComponent implements OnInit {
   user: User;
   convertationId: string;
   textMessage: string;
+  convertation: any[];
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService,private convertationService: ConversationService, private authenticationService: AuthenticationService) {
     // Obtengo el id del cliente por el parametro de la ruta
@@ -41,13 +42,16 @@ export class ConversationComponent implements OnInit {
 
               const ids = [this.user.uid, this.friend.uid].sort();
               this.convertationId = ids.join('|');
+              console.log(this.convertationId);
+
+              this.getConversation();
             },
             (error) => {
               console.log(error);
             });
-                  });
-            });
-  }
+          });
+        });
+      }
 
   ngOnInit() {
   }
@@ -58,7 +62,8 @@ export class ConversationComponent implements OnInit {
       timestamp: Date.now(),
       text: this.textMessage,
       sender: this.user.uid,
-      receiver: this.friend.uid
+      receiver: this.friend.uid,
+      seen: false
     };
 
     this.convertationService
@@ -67,4 +72,33 @@ export class ConversationComponent implements OnInit {
         this.textMessage = '';
       });
   }
+
+  getConversation() {
+    this.convertationService
+      .getConvertation(this.convertationId)
+      .valueChanges()
+      .subscribe((data) => {
+        console.log(data);
+        this.convertation = data;
+        this.convertation.forEach((msj) => {
+          if (!msj.seen) {
+            msj.seen = true;
+            this.convertationService.editConversation(msj);
+            // Reproduce el sonido de notificacion
+            const audio = new Audio('assets/sound/new_message.m4a');
+            audio.play();
+          }
+        });
+      }, (error) => {
+        console.log(error);
+      });
+  }
+
+  getUserNickById(uid) {
+    if (uid === this.friend.uid) {
+      return this.friend.nick;
+    } else {
+      return this.user.nick;
+    }
+  };
 }

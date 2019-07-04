@@ -20,6 +20,10 @@
       <span class="friendName">Amigo 1</span> (online)
       <hr />
       <div class="vh55 overscroll pabo10" id="messageArea">
+        <div class="messageGroup" *ngFor="let m of convertation">
+          <b>{{ getUserNickById(m.sender) }}</b> dice: <br />
+          <span>{{ m.text }}</span>
+        </div>
       </div>
       <div class="messageControlsContainer">
         <textarea [(ngModel)]="textMessage" [ngModelOptions]="{standalone: true}" (keyup.enter)="sendMessage()" class="form-control" cols="30"

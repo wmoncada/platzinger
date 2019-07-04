@@ -15,6 +15,12 @@ export class ConversationService {
   }
 
   getConvertation(uid) {
-    return this.angularFireDatabase.list('convertaions/' + uid);
+    return this.angularFireDatabase.list('conversations/' + uid);
+  }
+
+  editConversation(conversation) {
+    return this.angularFireDatabase
+      .object('conversations/' + conversation.uid + '/' + conversation.timestamp)
+      .set(conversation);
   }
 }
