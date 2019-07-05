@@ -19,6 +19,7 @@ import { from } from 'rxjs';
 import { AuthenticationGuard } from './services/authentication.guard';
 import { RickandmortyapiComponent } from './rickandmortyapi/rickandmortyapi.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Rutas
 const appRoutes: Routes = [
@@ -50,7 +51,8 @@ const appRoutes: Routes = [
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     AngularFireDatabaseModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
