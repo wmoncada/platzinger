@@ -14,10 +14,13 @@ import { RequestsService } from '../services/requests.service';
 export class HomeComponent implements OnInit {
   friends: User[];
   user: User;
-  query: string = '';
-  friendEmail: string = '';
+  query = '';
+  friendEmail = '';
 
-  constructor(private userService: UserService, private autenthicationService: AuthenticationService, private modalService: NgbModal, private requestService: RequestsService) {
+  constructor(private userService: UserService,
+              private autenthicationService: AuthenticationService,
+              private modalService: NgbModal,
+              private requestService: RequestsService) {
     // Obtengo los datos del usuario logueado
     this.autenthicationService
       .getStatus()

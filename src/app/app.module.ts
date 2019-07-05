@@ -20,6 +20,8 @@ import { AuthenticationGuard } from './services/authentication.guard';
 import { RickandmortyapiComponent } from './rickandmortyapi/rickandmortyapi.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { RequestComponent } from './modals/request/request.component';
 
 // Rutas
 const appRoutes: Routes = [
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     MenuComponent,
     SearchPipe,
-    RickandmortyapiComponent
+    RickandmortyapiComponent,
+    RequestComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +55,11 @@ const appRoutes: Routes = [
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     AngularFireDatabaseModule,
     ImageCropperModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    BootstrapModalModule.forRoot({container: document.body })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RequestComponent],
 })
 export class AppModule {}
