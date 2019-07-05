@@ -18,6 +18,7 @@ export class ConversationComponent implements OnInit {
   convertationId: string;
   textMessage: string;
   convertation: any[];
+  shake: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService,private convertationService: ConversationService, private authenticationService: AuthenticationService) {
     // Obtengo el id del cliente por el parametro de la ruta
@@ -63,13 +64,32 @@ export class ConversationComponent implements OnInit {
       text: this.textMessage,
       sender: this.user.uid,
       receiver: this.friend.uid,
-      seen: false
+      seen: false,
+      type: 'text'
     };
 
     this.convertationService
       .createConversation(message)
       .then(() => {
         this.textMessage = '';
+      });
+  }
+
+  sendZumbido() {
+    const message = {
+      uid: this.convertationId,
+      timestamp: Date.now(),
+      text: null,
+      sender: this.user.uid,
+      receiver: this.friend.uid,
+      seen: false,
+      type: 'zumbido'
+    };
+
+    this.convertationService
+      .createConversation(message)
+      .then(() => {
+        this.doZumbido();
       });
   }
 
@@ -84,9 +104,13 @@ export class ConversationComponent implements OnInit {
           if (!msj.seen) {
             msj.seen = true;
             this.convertationService.editConversation(msj);
-            // Reproduce el sonido de notificacion
-            const audio = new Audio('assets/sound/new_message.m4a');
-            audio.play();
+            if(msj.type === 'text') {
+              // Reproduce el sonido de notificacion
+              const audio = new Audio('assets/sound/new_message.m4a');
+              audio.play();
+            } else if(msj.type === 'zumbido') {
+              this.doZumbido();
+            }
           }
         });
       }, (error) => {
@@ -100,5 +124,14 @@ export class ConversationComponent implements OnInit {
     } else {
       return this.user.nick;
     }
-  };
+  }
+
+  doZumbido() {
+    const audio = new Audio('assets/sound/zumbido.m4a');
+    audio.play();
+    this.shake = true;
+    window.setTimeout(() => {
+      this.shake = false;
+    }, 1000);
+  }
 }
