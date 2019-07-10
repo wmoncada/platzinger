@@ -29,7 +29,7 @@ accept() {
         console.log(data);
 
         this.userService
-          .addFriend(this.scope.user.id, this.currentRequest.sender)
+          .addFriend(this.scope.user.uid, this.currentRequest.sender)
           .then(() => {
             alert('Solicitud aceptada');
           })
