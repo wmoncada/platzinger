@@ -34,16 +34,7 @@
         <b>Amigos ({{ user.friends.length }}/{{ user.friends.length }})</b>
 
         <ng-container *ngFor="let user of user.friends | search: query; let i = index">
-          {{user}}
-          <!-- div *ngIf="user.friend" -->
-          <!--div>
-            <a routerLink="/conversation/{{user.uid}}">
-              <img src="assets/img/logo_live_online.png" class="icon" alt="">
-              <b>{{user.nick}}</b> -
-                {{user.subick || ' *** ' }}
-                <small>{{user.email}}</small>
-            </a>
-          </div -->
+          <app-contact [uid] = "user"></app-contact>
         </ng-container>
       </div>
   </div>

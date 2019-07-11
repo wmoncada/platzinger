@@ -22,6 +22,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { RequestComponent } from './modals/request/request.component';
+import { ContactComponent } from './contact/contact.component';
 
 // Rutas
 const appRoutes: Routes = [
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     MenuComponent,
     SearchPipe,
     RickandmortyapiComponent,
-    RequestComponent
+    RequestComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
